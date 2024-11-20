@@ -7,10 +7,13 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "verify": "echo \u001b[34mTypecheck\u001b[0m && yarn typecheck && echo \u001b[35mLinting\u001b[0m && yarn lint"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.1.0",
+    "@tanstack/react-router": "^1.82.1",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "lucide-react": "^0.460.0",
@@ -23,6 +26,8 @@
     "@commitlint/cli": "^19.6.0",
     "@commitlint/config-conventional": "^19.6.0",
     "@eslint/js": "^9.13.0",
+    "@tanstack/router-devtools": "^1.82.1",
+    "@tanstack/router-plugin": "^1.81.9",
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",

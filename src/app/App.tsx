@@ -1,15 +1,22 @@
-import { ChevronRight } from 'lucide-react'
+import { RouterProvider, createRouter } from '@tanstack/react-router'
 
-import { Button } from '@shared/ui'
-
+import { routeTree } from '../routeTree.gen'
 import './index.css'
+
+const router = createRouter({
+  routeTree,
+})
+
+declare module '@tanstack/react-router' {
+  interface Register {
+    router: typeof router
+  }
+}
 
 const App = () => {
   return (
-    <main className="bg-background dark h-screen">
-      <Button variant="outline" size="icon">
-        <ChevronRight />
-      </Button>
+    <main className="h-screen">
+      <RouterProvider router={router} />
     </main>
   )
 }
