@@ -1,7 +1,17 @@
-import "./index.css";
+import { ChevronRight } from 'lucide-react'
+
+import { Button } from '@shared/ui'
+
+import './index.css'
 
 const App = () => {
-  return <div className="size-10 bg-black"></div>;
-};
+  return (
+    <main className="bg-background dark h-screen">
+      <Button variant="outline" size="icon">
+        <ChevronRight />
+      </Button>
+    </main>
+  )
+}
 
-export default App;
+export default App
