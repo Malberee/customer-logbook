@@ -3,6 +3,8 @@ import { Phone, Plus, User } from 'lucide-react'
 
 import { customers } from '@entities/customer'
 
+import { DashedButton } from '@shared/ui'
+
 import { Visit } from './visit'
 
 export const CustomerDetails = () => {
@@ -14,7 +16,7 @@ export const CustomerDetails = () => {
     <div>
       <div className="mb-4 border-b border-accent pb-4">
         <h1 className="mb-2 flex items-center gap-2 text-4xl">
-          <User size={32} />
+          <User size={24} />
           {name}
         </h1>
         <a
@@ -22,15 +24,15 @@ export const CustomerDetails = () => {
           href={`tel:${tel}`}
           className="flex items-center gap-2 text-2xl text-neutral-500 hover:underline"
         >
-          <Phone />
+          <Phone size={24} />
           {tel}
         </a>
       </div>
 
-      <button className="mb-4 flex w-full items-center justify-center gap-2 rounded-md border border-dashed border-sky-500 bg-sky-500/20 p-4 text-sky-500 transition-opacity hover:opacity-80">
-        <Plus />
-        Add visit
-      </button>
+      <DashedButton className="mb-4">
+        <Plus className="mr-2" /> Add visit
+      </DashedButton>
+      
       <ul>
         {visits.map((visit) => (
           <Visit {...visit} />

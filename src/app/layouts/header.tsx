@@ -9,7 +9,7 @@ export const Header = () => {
   const pathname = useRouterState().location.pathname
 
   return (
-    <header className="flex p-4">
+    <header className="flex gap-4 p-4">
       {pathname !== '/' ? (
         <Link to="/">
           <Button variant="ghost" size="icon">

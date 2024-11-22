@@ -35,6 +35,11 @@ class Customers {
     { name: 'Vadim', tel: '0675375756', id: '3', visits: [] },
     { name: 'Kto-to', tel: '0675375756', id: '4', visits: [] },
     { name: 'Chirik', tel: '0675375756', id: '5', visits: [] },
+    { name: 'NeChirik', tel: '0675375756', id: '6', visits: [] },
+    { name: 'Vadim', tel: '0675375756', id: '7', visits: [] },
+    { name: 'Kto-to', tel: '0675375756', id: '8', visits: [] },
+    { name: 'Chirik', tel: '0675375756', id: '9', visits: [] },
+    { name: 'NeChirik', tel: '0675375756', id: '10', visits: [] },
   ]
 
   addCustomer(customer: Customer) {
