@@ -1,30 +1,17 @@
-import { Header } from './header'
+import { observer } from 'mobx-react-lite'
 
-const customers = [
-  { name: 'Elena', tel: '0675375756', id: 1 },
-  { name: 'NeElena', tel: '0675375756', id: 2 },
-  { name: 'Vadim', tel: '0675375756', id: 3 },
-  { name: 'Kto-to', tel: '0675375756', id: 4 },
-  { name: 'Chirik', tel: '0675375756', id: 5 },
-]
+import { customers } from '@entities/customer'
 
-export const Customers = () => {
+import { Customer } from './customer'
+
+export const Customers = observer(() => {
+  const data = customers.customers
+
   return (
-    <>
-      <Header />
-      <ul>
-        {customers.map(({ name, tel, id }) => (
-          <li key={id}>
-            <a className="flex cursor-pointer items-center justify-between p-4 transition-colors hover:bg-accent">
-              <div>
-                <p>{name}</p>
-                <p>{tel}</p>
-              </div>
-              <p>Last visit: 21.11.2024</p>
-            </a>
-          </li>
-        ))}
-      </ul>
-    </>
+    <ul>
+      {data.map((customer) => (
+        <Customer key={customer.id} {...customer} />
+      ))}
+    </ul>
   )
-}
+})
