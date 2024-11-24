@@ -12,6 +12,7 @@
     "verify": "echo \u001b[34mTypecheck\u001b[0m && yarn typecheck && echo \u001b[35mLinting\u001b[0m && yarn lint"
   },
   "dependencies": {
+    "@radix-ui/react-label": "^2.1.0",
     "@radix-ui/react-slot": "^1.1.0",
     "@tanstack/react-router": "^1.82.1",
     "class-variance-authority": "^0.7.0",
@@ -20,8 +21,10 @@
     "lucide-react": "^0.460.0",
     "mobx": "^6.13.5",
     "mobx-react-lite": "^4.0.7",
+    "nanoid": "^5.0.8",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-hook-form": "^7.53.2",
     "tailwind-merge": "^2.5.4",
     "tailwindcss-animate": "^1.0.7"
   },

@@ -1,4 +1,7 @@
 import { observer } from 'mobx-react-lite'
+import { useState } from 'react'
+
+import { CustomerCreateEdit } from '@features/customer-create-edit'
 
 import { customers } from '@entities/customer'
 
@@ -7,7 +10,9 @@ import { DashedButton } from '@shared/ui'
 import { Customer } from './customer'
 
 export const Customers = observer(() => {
-  const data = customers.customers
+  const [modalIsOpen, setModalIsOpen] = useState(false)
+
+  const data = customers.customers.sort((a, b) => a.name.localeCompare(b.name))
 
   return (
     <>
@@ -18,8 +23,15 @@ export const Customers = observer(() => {
       </ul>
 
       <div className="fixed bottom-0 left-0 w-full p-4">
-        <DashedButton>Add customer</DashedButton>
+        <DashedButton onClick={() => setModalIsOpen(true)}>
+          Add customer
+        </DashedButton>
       </div>
+
+      <CustomerCreateEdit
+        onClose={() => setModalIsOpen(false)}
+        isOpen={modalIsOpen}
+      />
     </>
   )
 })

@@ -1,3 +1,5 @@
+import { nanoid } from 'nanoid'
+
 export type Visit = {
   id: string
   date: Date
@@ -42,8 +44,14 @@ class Customers {
     { name: 'NeChirik', tel: '0675375756', id: '10', visits: [] },
   ]
 
-  addCustomer(customer: Customer) {
-    this.customers.push(customer)
+  addCustomer({ name, tel }: Pick<Customer, 'name' | 'tel'>) {
+    this.customers.push({ name, tel, id: nanoid(), visits: [] })
+  }
+
+  updateCustomer(customer: Partial<Customer>) {
+    this.customers = this.customers.map((c) =>
+      c.id === customer.id ? { ...c, ...customer } : c,
+    )
   }
 
   getCustomerById(id: string) {
