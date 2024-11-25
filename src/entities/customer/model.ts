@@ -106,14 +106,36 @@ class Customers {
     { name: 'Kto-to', tel: '0675375756', id: '8', visits: [] },
     { name: 'Chirik', tel: '0675375756', id: '9', visits: [] },
     { name: 'NeChirik', tel: '0675375756', id: '10', visits: [] },
+    // generate 100 times
+    ...Array.from({ length: 100 }).map((_, i) => ({
+      name: `Customer ${i}`,
+      tel: '0675375756',
+      id: `${i + 11}`,
+      visits: [],
+    })),
   ]
+  searchFilter: string = ''
 
   constructor() {
     makeAutoObservable(this)
   }
 
+  setSearchFilter(value: string) {
+    this.searchFilter = value
+  }
+
   addCustomer({ name, tel }: Pick<Customer, 'name' | 'tel'>) {
     this.customers.push({ name, tel, id: nanoid(), visits: [] })
+  }
+
+  get filteredCustomers() {
+    if (!this.searchFilter) {
+      return this.customers
+    }
+
+    return this.customers.filter((customer) =>
+      customer.name.toLowerCase().startsWith(this.searchFilter.toLowerCase()),
+    )
   }
 
   updateCustomer(customer: Partial<Customer>) {
