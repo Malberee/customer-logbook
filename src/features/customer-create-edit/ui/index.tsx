@@ -27,18 +27,18 @@ export const CustomerCreateEdit: FC<CustomerCreateEditProps> = ({
     } else {
       customers.addCustomer(data)
     }
+
+    onClose?.()
   }
 
   return (
-    <>
-      <Modal isOpen={isOpen} onClose={onClose}>
-        <Form
-          onSubmit={handleSubmit}
-          defaultValues={
-            customer ? { name: customer.name, tel: customer.tel } : undefined
-          }
-        />
-      </Modal>
-    </>
+    <Modal isOpen={isOpen} onClose={onClose}>
+      <Form
+        onSubmit={handleSubmit}
+        defaultValues={
+          customer ? { name: customer.name, tel: customer.tel } : undefined
+        }
+      />
+    </Modal>
   )
 }

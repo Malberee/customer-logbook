@@ -1,23 +1,53 @@
-import dayjs from 'dayjs'
-import type { FC } from 'react'
+import { format } from 'date-fns'
+import { Edit } from 'lucide-react'
+import { type FC } from 'react'
 
 import type { Visit as VisitType } from '@entities/customer'
 
-export const Visit: FC<VisitType> = ({ date, procedure, price }) => {
+import {
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+  Button,
+} from '@shared/ui'
+
+interface VisitProps {
+  onEdit: (id: string) => void
+  visit: VisitType
+}
+
+export const Visit: FC<VisitProps> = ({ visit, onEdit }) => {
+  const { date, procedure, description, price, id } = visit
+
+  const numberFormatter = Intl.NumberFormat('ua-UK', {
+    style: 'currency',
+    currency: 'UAH',
+  })
+
   return (
-    <li>
-      <a className="group relative flex cursor-pointer items-center gap-2 rounded-md px-2 py-4 transition-colors hover:bg-accent focus:bg-accent">
-        <p>
+    <>
+      <AccordionItem className="relative" value={id}>
+        <AccordionTrigger className="px-2 hover:bg-accent hover:no-underline">
           <span className="rounded-full bg-emerald-500/20 px-2 py-1 text-emerald-500">
-            {dayjs(date).format('DD.MM.YYYY')}
+            {format(date, 'dd.MM.yyyy')}
           </span>
-        </p>
-        <p>{procedure}</p>
+          {price ? (
+            <span className="ml-auto mr-2">
+              {numberFormatter.format(price)}
+            </span>
+          ) : null}
+        </AccordionTrigger>
 
-        <div className="h-px flex-1 bg-accent transition-colors group-hover:bg-background" />
-
-        <p>{price}</p>
-      </a>
-    </li>
+        <AccordionContent>
+          <div className="mb-2 flex items-center justify-between">
+            <h4 className="text-xl">{procedure}</h4>
+            <Button variant="ghost" size="icon" onClick={() => onEdit(id)}>
+              <Edit className="!rotate-0" />
+            </Button>
+          </div>
+          {description ? <p className="mb-4">{description}</p> : null}
+        </AccordionContent>
+      </AccordionItem>
+    </>
   )
 }

@@ -12,7 +12,9 @@ import { Customer } from './customer'
 export const Customers = observer(() => {
   const [modalIsOpen, setModalIsOpen] = useState(false)
 
-  const data = customers.customers.sort((a, b) => a.name.localeCompare(b.name))
+  const data = customers.customers.toSorted((a, b) =>
+    a.name.localeCompare(b.name),
+  )
 
   return (
     <>
