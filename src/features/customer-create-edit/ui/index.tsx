@@ -3,7 +3,13 @@ import type { SubmitHandler } from 'react-hook-form'
 
 import { customers } from '@entities/customer'
 
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@shared/ui'
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from '@shared/ui'
 
 import { type CustomerForm, Form } from './form'
 
@@ -33,9 +39,13 @@ export const CustomerCreateEdit: FC<CustomerCreateEditProps> = ({
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="box-content max-w-[280px]">
+      <DialogContent
+        onOpenAutoFocus={(e) => e.preventDefault()}
+        className="box-content max-w-[280px]"
+      >
         <DialogHeader>
           <DialogTitle>Customer</DialogTitle>
+          <DialogDescription className="hidden">Customer</DialogDescription>
         </DialogHeader>
         <Form
           onSubmit={handleSubmit}

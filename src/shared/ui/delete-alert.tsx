@@ -29,7 +29,7 @@ export const DeleteAlert: FC<DeleteAlertProps> = ({
 }) => {
   return (
     <AlertDialog open={show}>
-      <AlertDialogContent>
+      <AlertDialogContent onEscapeKeyDown={onClose}>
         <AlertDialogHeader>
           <AlertDialogTitle>{title}</AlertDialogTitle>
           <AlertDialogDescription>{description}</AlertDialogDescription>
