@@ -28,7 +28,7 @@ export const DatePicker: FC<DatePickerProps> = ({
         <Button
           variant="outline"
           className={cn(
-            'w-[280px] justify-start text-left font-normal flex',
+            'flex w-[280px] justify-start text-left font-normal',
             !selected && 'text-muted-foreground',
           )}
           type="button"

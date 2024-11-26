@@ -1,6 +1,6 @@
 import { type FC } from 'react'
 
-import { Modal } from '@shared/ui'
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@shared/ui'
 
 import { useForm } from '../model'
 import { Form } from './form'
@@ -25,8 +25,13 @@ export const VisitCreateEdit: FC<VisitCreateEditProps> = ({
   )
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose}>
-      <Form onSubmit={handleSubmit} defaultValues={defaultValues} />
-    </Modal>
+    <Dialog open={isOpen} onOpenChange={onClose}>
+      <DialogContent className="box-content max-w-[280px] max-h-screen overflow-auto">
+        <DialogHeader>
+          <DialogTitle>Visit</DialogTitle>
+        </DialogHeader>
+        <Form onSubmit={handleSubmit} defaultValues={defaultValues} />
+      </DialogContent>
+    </Dialog>
   )
 }

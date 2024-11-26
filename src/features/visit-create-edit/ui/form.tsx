@@ -2,15 +2,7 @@ import { Label } from '@radix-ui/react-label'
 import { type FC } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 
-import {
-  Button,
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-  Input,
-  Textarea,
-} from '@shared/ui'
+import { Button, Input, Textarea } from '@shared/ui'
 
 import type { VisitForm } from '../model'
 import { DatePicker } from './date-picker'
@@ -26,55 +18,35 @@ export const Form: FC<FormProps> = ({ onSubmit, defaultValues }) => {
   })
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Visit</CardTitle>
-      </CardHeader>
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
+      <Label>
+        Procedure
+        <Input {...register('procedure')} />
+      </Label>
 
-      <CardContent>
-        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
-          <div>
-            <Label>
-              Procedure
-              <Input {...register('procedure')} />
-            </Label>
-          </div>
+      <Label>
+        Price
+        <Input type="number" step=".01" {...register('price')} />
+      </Label>
 
-          <div>
-            <Label>
-              Price
-              <Input type="number" step=".01" {...register('price')} />
-            </Label>
-          </div>
+      <Label className="inline">
+        Date
+        <Controller
+          control={control}
+          name="date"
+          rules={{ required: true }}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <DatePicker onChange={onChange} onBlur={onBlur} selected={value} />
+          )}
+        />
+      </Label>
 
-          <div>
-            <Label>
-              Date
-              <Controller
-                control={control}
-                name="date"
-                rules={{ required: true }}
-                render={({ field: { onChange, onBlur, value } }) => (
-                  <DatePicker
-                    onChange={onChange}
-                    onBlur={onBlur}
-                    selected={value}
-                  />
-                )}
-              />
-            </Label>
-          </div>
+      <Label>
+        Notes
+        <Textarea className="min-h-24" {...register('description')} />
+      </Label>
 
-          <div>
-            <Label>
-              Notes
-              <Textarea {...register('description')} />
-            </Label>
-          </div>
-
-          <Button type="submit">Submit</Button>
-        </form>
-      </CardContent>
-    </Card>
+      <Button type="submit">Submit</Button>
+    </form>
   )
 }

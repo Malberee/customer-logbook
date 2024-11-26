@@ -3,7 +3,7 @@ import type { SubmitHandler } from 'react-hook-form'
 
 import { customers } from '@entities/customer'
 
-import { Modal } from '@shared/ui'
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@shared/ui'
 
 import { type CustomerForm, Form } from './form'
 
@@ -32,13 +32,18 @@ export const CustomerCreateEdit: FC<CustomerCreateEditProps> = ({
   }
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose}>
-      <Form
-        onSubmit={handleSubmit}
-        defaultValues={
-          customer ? { name: customer.name, tel: customer.tel } : undefined
-        }
-      />
-    </Modal>
+    <Dialog open={isOpen} onOpenChange={onClose}>
+      <DialogContent className="box-content max-w-[280px]">
+        <DialogHeader>
+          <DialogTitle>Customer</DialogTitle>
+        </DialogHeader>
+        <Form
+          onSubmit={handleSubmit}
+          defaultValues={
+            customer ? { name: customer.name, tel: customer.tel } : undefined
+          }
+        />
+      </DialogContent>
+    </Dialog>
   )
 }
