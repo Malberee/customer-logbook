@@ -172,6 +172,16 @@ class Customers {
     ].visits.map((v) => (v.id === visit.id ? visit : v))
   }
 
+  deleteVisit(customerId: string, visitId: string) {
+    const customerIndex = this.customers.findIndex(
+      (customer) => customer.id === customerId,
+    )
+
+    this.customers[customerIndex].visits = this.customers[
+      customerIndex
+    ].visits.filter((visit) => visit.id !== visitId)
+  }
+
   getVisitById(customerId: string, visitId: string) {
     const customer = this.getCustomerById(customerId)
 

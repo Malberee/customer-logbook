@@ -26,7 +26,7 @@ export const VisitCreateEdit: FC<VisitCreateEditProps> = ({
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="box-content max-w-[280px] max-h-screen overflow-auto">
+      <DialogContent className="box-content max-h-screen max-w-[280px] overflow-auto">
         <DialogHeader>
           <DialogTitle>Visit</DialogTitle>
         </DialogHeader>

@@ -1,10 +1,16 @@
+import { useNavigate } from '@tanstack/react-router'
 import { Edit, MoreVertical, Trash } from 'lucide-react'
-import { type FC, useState } from 'react'
+import { useState } from 'react'
+
+import { useCustomer } from '@pages/customer-details'
 
 import { CustomerCreateEdit } from '@features/customer-create-edit'
 
+import { customers } from '@entities/customer'
+
 import {
   Button,
+  DeleteAlert,
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
@@ -12,15 +18,12 @@ import {
   DropdownMenuTrigger,
 } from '@shared/ui'
 
-import { Alert } from './alert'
+export const Actions = () => {
+  const { id } = useCustomer()
 
-interface ActionsProps {
-  customerId: string
-}
-
-export const Actions: FC<ActionsProps> = ({ customerId }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false)
   const [showDialog, setShowDialog] = useState(false)
+  const navigate = useNavigate()
 
   return (
     <>
@@ -52,16 +55,22 @@ export const Actions: FC<ActionsProps> = ({ customerId }) => {
         </DropdownMenuContent>
       </DropdownMenu>
 
-      <Alert
-        customerId={customerId}
+      <DeleteAlert
+        title="Are you sure?"
+        description="This action cannot be undone. Doing so will permanently delete this
+            customer."
         show={showDialog}
         onClose={() => setShowDialog(false)}
+        onAction={() => {
+          customers.deleteCustomer(id)
+          navigate({ to: '/' })
+        }}
       />
 
       <CustomerCreateEdit
         isOpen={modalIsOpen}
         onClose={() => setModalIsOpen(false)}
-        customerForEdit={customerId}
+        customerForEdit={id}
       />
     </>
   )
