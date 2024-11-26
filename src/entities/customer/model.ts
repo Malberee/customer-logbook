@@ -144,6 +144,12 @@ class Customers {
     )
   }
 
+  deleteCustomer(customerId: string) {
+    this.customers = this.customers.filter(
+      (customer) => customer.id !== customerId,
+    )
+  }
+
   getCustomerById(id: string) {
     return this.customers.find((customer) => customer.id === id)
   }

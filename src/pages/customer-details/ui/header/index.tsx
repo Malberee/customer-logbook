@@ -1,16 +1,12 @@
-import { Edit, Phone, User } from 'lucide-react'
-import { type FC, useState } from 'react'
-
-import { CustomerCreateEdit } from '@features/customer-create-edit'
+import { Phone, User } from 'lucide-react'
+import { type FC } from 'react'
 
 import { type Customer } from '@entities/customer'
 
-import { Button } from '@shared/ui'
+import { Actions } from './actions'
 
 export const Header: FC<{ customer: Customer }> = ({ customer }) => {
   const { name, tel, id } = customer
-
-  const [modalIsOpen, setModalIsOpen] = useState(false)
 
   return (
     <div className="mb-4 border-b border-accent pb-4">
@@ -27,20 +23,8 @@ export const Header: FC<{ customer: Customer }> = ({ customer }) => {
           <Phone size={24} />
           {tel}
         </a>
-        <Button
-          onClick={() => setModalIsOpen(true)}
-          variant="ghost"
-          size="icon"
-        >
-          <Edit />
-        </Button>
+        <Actions customerId={id} />
       </div>
-
-      <CustomerCreateEdit
-        isOpen={modalIsOpen}
-        onClose={() => setModalIsOpen(false)}
-        customerForEdit={id}
-      />
     </div>
   )
 }
