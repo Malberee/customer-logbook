@@ -1,9 +1,16 @@
 import { Link } from '@tanstack/react-router'
+import { format } from 'date-fns'
 import { type FC } from 'react'
 
 import { type Customer as CustomerType } from '@entities/customer'
 
-export const Customer: FC<CustomerType> = ({ name, tel, id }) => {
+export const Customer: FC<CustomerType> = ({ name, tel, visits, id }) => {
+  const lastVisitDate = visits.length
+    ? visits.toSorted(
+        (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
+      )[0].date
+    : null
+
   return (
     <li>
       <Link
@@ -14,7 +21,9 @@ export const Customer: FC<CustomerType> = ({ name, tel, id }) => {
           <p className="text-lg">{name}</p>
           <p className="text-neutral-500">{tel}</p>
         </div>
-        <p>Last visit: today</p>
+        {lastVisitDate ? (
+          <p>Last visit: {format(lastVisitDate, 'dd.MM.yyyy')}</p>
+        ) : null}
       </Link>
     </li>
   )
