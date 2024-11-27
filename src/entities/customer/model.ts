@@ -1,4 +1,6 @@
 import { makeAutoObservable } from 'mobx'
+import { makePersistable } from 'mobx-persist-store'
+import DBController from 'mobx-persist-store-idb-adapter'
 import { nanoid } from 'nanoid'
 
 export type Visit = {
@@ -17,107 +19,18 @@ export type Customer = {
 }
 
 class Customers {
-  customers: Customer[] = [
-    {
-      name: 'Elena',
-      tel: '0675375756',
-      id: '1',
-      visits: [
-        {
-          id: '1',
-          date: new Date(),
-          procedure: 'Name',
-          price: 123.6,
-          description:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-        },
-        {
-          id: '2',
-          date: new Date(),
-          procedure: 'Name',
-          price: 123.6,
-          description:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-        },
-        {
-          id: '3',
-          date: new Date(),
-          procedure: 'Name',
-          price: 123.6,
-          description:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-        },
-        {
-          id: '4',
-          date: new Date(),
-          procedure: 'Name',
-          price: 123.6,
-          description:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-        },
-        {
-          id: '5',
-          date: new Date(),
-          procedure: 'Name',
-          price: 123.6,
-          description:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-        },
-        {
-          id: '6',
-          date: new Date(),
-          procedure: 'Name',
-          price: 123.6,
-          description:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-        },
-        {
-          id: '7',
-          date: new Date(),
-          procedure: 'Name',
-          price: 123.6,
-          description:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-        },
-        {
-          id: '8',
-          date: new Date(),
-          procedure: 'Name',
-          price: 123.6,
-          description:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-        },
-        {
-          id: '9',
-          date: new Date(),
-          procedure: 'Name',
-          price: 123.6,
-          description:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-        },
-      ],
-    },
-    { name: 'NeElena', tel: '0675375756', id: '2', visits: [] },
-    { name: 'Vadim', tel: '0675375756', id: '3', visits: [] },
-    { name: 'Kto-to', tel: '0675375756', id: '4', visits: [] },
-    { name: 'Chirik', tel: '0675375756', id: '5', visits: [] },
-    { name: 'NeChirik', tel: '0675375756', id: '6', visits: [] },
-    { name: 'Vadim', tel: '0675375756', id: '7', visits: [] },
-    { name: 'Kto-to', tel: '0675375756', id: '8', visits: [] },
-    { name: 'Chirik', tel: '0675375756', id: '9', visits: [] },
-    { name: 'NeChirik', tel: '0675375756', id: '10', visits: [] },
-    // generate 100 times
-    ...Array.from({ length: 100 }).map((_, i) => ({
-      name: `Customer ${i}`,
-      tel: '0675375756',
-      id: `${i + 11}`,
-      visits: [],
-    })),
-  ]
+  customers: Customer[] = []
   searchFilter: string = ''
 
   constructor() {
+    const indexedDBStore = new DBController('customer-logbook', 'customers', 1)
+
     makeAutoObservable(this)
+    makePersistable(this, {
+      name: 'Customers',
+      properties: ['customers'],
+      storage: indexedDBStore,
+    })
   }
 
   setSearchFilter(value: string) {
