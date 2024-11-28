@@ -5,6 +5,7 @@ import { SearchBar } from '@features/search'
 import { ThemeToggle } from '@features/theme-toggle'
 import { LangToggle } from '@features/toggle-language'
 
+import { basePath } from '@shared/config'
 import { Button } from '@shared/ui'
 
 export const Header = () => {
@@ -12,7 +13,7 @@ export const Header = () => {
 
   return (
     <header className="flex gap-4 p-4">
-      {pathname !== '/' ? (
+      {pathname !== basePath ? (
         <Link to="/">
           <Button variant="ghost" size="icon">
             <ChevronLeft />
@@ -22,7 +23,7 @@ export const Header = () => {
         <LangToggle />
       )}
 
-      {pathname === '/' ? <SearchBar /> : null}
+      {pathname === basePath ? <SearchBar /> : null}
 
       <ThemeToggle />
     </header>
