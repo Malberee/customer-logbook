@@ -1,16 +1,27 @@
-import { observer } from 'mobx-react-lite'
-import { useState } from 'react'
+import { observer } from 'mobx-react-lite';
+import { useState } from 'react';
 
-import { CustomerCreateEdit } from '@features/customer-create-edit'
 
-import { customers } from '@entities/customer'
 
-import { DashedButton } from '@shared/ui'
+import { CustomerCreateEdit } from '@features/customer-create-edit';
 
-import { Customer } from './customer'
+
+
+import { customers } from '@entities/customer';
+
+
+
+import { DashedButton } from '@shared/ui';
+
+
+
+import { Customer } from './customer';
+import { useTranslation } from 'react-i18next';
+
 
 export const Customers = observer(() => {
   const [modalIsOpen, setModalIsOpen] = useState(false)
+  const { t } = useTranslation()
 
   const data = customers.filteredCustomers.toSorted((a, b) =>
     a.name.localeCompare(b.name),
@@ -26,7 +37,7 @@ export const Customers = observer(() => {
 
       <div className="fixed bottom-0 left-0 w-full p-4">
         <DashedButton onClick={() => setModalIsOpen(true)}>
-          Add customer
+          {t('Add customer')}
         </DashedButton>
       </div>
 

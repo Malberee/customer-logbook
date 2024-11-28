@@ -1,0 +1,21 @@
+{
+  "Search": "Search",
+  "Customer": "Customer",
+  "Visit": "Visit",
+  "Name": "Name",
+  "Phone number": "Phone number",
+  "Add customer": "Add customer",
+  "Name is required!": "Name is required!",
+  "Add visit": "Add visit",
+  "Edit": "Edit",
+  "Delete": "Delete",
+  "Submit": "Submit",
+  "Cancel": "Cancel",
+  "Are you sure?": "Are you sure?",
+  "Delete visit alert": "This action cannot be undone. Are you sure you want to delete this visit?",
+  "Delete customer alert": "This action cannot be undone. Are you sure you want to delete this customer?",
+  "Procedure": "Procedure",
+  "Price": "Price",
+  "Date": "Date",
+  "Notes": "Notes"
+}

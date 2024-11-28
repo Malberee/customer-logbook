@@ -1,5 +1,6 @@
 import type { FC } from 'react'
 import type { SubmitHandler } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 
 import { customers } from '@entities/customer'
 
@@ -24,6 +25,8 @@ export const CustomerCreateEdit: FC<CustomerCreateEditProps> = ({
   isOpen,
   onClose,
 }) => {
+  const { t } = useTranslation()
+
   const customer =
     (customerForEdit && customers.getCustomerById(customerForEdit)) || null
 
@@ -44,8 +47,10 @@ export const CustomerCreateEdit: FC<CustomerCreateEditProps> = ({
         className="box-content max-w-[280px]"
       >
         <DialogHeader>
-          <DialogTitle>Customer</DialogTitle>
-          <DialogDescription className="hidden">Customer</DialogDescription>
+          <DialogTitle>{t('Customer')}</DialogTitle>
+          <DialogDescription className="hidden">
+            {t('Customer')}
+          </DialogDescription>
         </DialogHeader>
         <Form
           onSubmit={handleSubmit}

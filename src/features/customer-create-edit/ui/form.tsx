@@ -1,6 +1,7 @@
 import { Label } from '@radix-ui/react-label'
 import type { FC } from 'react'
 import { useForm } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 
 import { Button, Input } from '@shared/ui'
 
@@ -21,15 +22,17 @@ export const Form: FC<FormProps> = ({ defaultValues, onSubmit }) => {
     formState: { errors },
   } = useForm<CustomerForm>({ defaultValues })
 
+  const { t } = useTranslation()
+
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
       <Label htmlFor="name">
-        Name
+        {t('Name')}
         <Input
           aria-invalid={!!errors.name}
           className={errors.name && 'mb-1 border-red-500'}
           id="name"
-          {...register('name', { required: 'Name is required!' })}
+          {...register('name', { required: t('Name is required!') })}
         />
         {errors.name && (
           <p className="text-sm text-red-500">{errors.name.message}</p>
@@ -37,7 +40,7 @@ export const Form: FC<FormProps> = ({ defaultValues, onSubmit }) => {
       </Label>
 
       <Label htmlFor="tel">
-        Phone number
+        {t('Phone number')}
         <Input
           aria-invalid={!!errors.tel}
           className={errors.tel && 'mb-1 border-red-500'}
@@ -53,7 +56,7 @@ export const Form: FC<FormProps> = ({ defaultValues, onSubmit }) => {
         )}
       </Label>
 
-      <Button className="w-full">Submit</Button>
+      <Button className="w-full">{t('Submit')}</Button>
     </form>
   )
 }

@@ -1,6 +1,7 @@
 import { useNavigate } from '@tanstack/react-router'
 import { Edit, MoreVertical, Trash } from 'lucide-react'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 import { useCustomer } from '@pages/customer-details'
 
@@ -20,10 +21,11 @@ import {
 
 export const Actions = () => {
   const { id } = useCustomer()
+  const navigate = useNavigate()
+  const { t } = useTranslation()
 
   const [modalIsOpen, setModalIsOpen] = useState(false)
   const [showDialog, setShowDialog] = useState(false)
-  const navigate = useNavigate()
 
   return (
     <>
@@ -40,7 +42,7 @@ export const Actions = () => {
             className="cursor-pointer"
           >
             <Edit />
-            Edit
+            {t('Edit')}
           </DropdownMenuItem>
 
           <DropdownMenuSeparator />
@@ -50,15 +52,14 @@ export const Actions = () => {
             className="cursor-pointer text-red-500 hover:bg-red-500/15 hover:text-red-500 focus:bg-red-500/15 focus:text-red-500"
           >
             <Trash />
-            Delete
+            {t('Delete')}
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
 
       <DeleteAlert
-        title="Are you sure?"
-        description="This action cannot be undone. Doing so will permanently delete this
-            customer."
+        title={t("Are you sure?")}
+        description={t('Delete customer alert')}
         show={showDialog}
         onClose={() => setShowDialog(false)}
         onAction={() => {

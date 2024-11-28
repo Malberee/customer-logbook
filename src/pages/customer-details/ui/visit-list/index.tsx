@@ -1,5 +1,6 @@
 import { Plus } from 'lucide-react'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 import { useCustomer } from '@pages/customer-details'
 
@@ -16,6 +17,8 @@ export const VisitList = () => {
 
   const [currentVisit, setCurrentVisit] = useState('')
   const [modalType, setModalType] = useState<'dialog' | 'create-edit' | ''>('')
+
+  const { t } = useTranslation()
 
   const data = visits
     .toSorted((a, b) => {
@@ -35,7 +38,7 @@ export const VisitList = () => {
         className="mb-4 w-full"
       >
         <Plus />
-        Add visit
+        {t('Add visit')}
       </Button>
 
       <Accordion type="single" collapsible>
@@ -62,8 +65,8 @@ export const VisitList = () => {
           customers.deleteVisit(id, currentVisit)
           closeModal()
         }}
-        title="Are you sure?"
-        description="This action cannot be undone. Doing so will permanently delete this visit."
+        title={t('Are you sure?')}
+        description={t('Delete visit alert')}
       />
 
       <VisitCreateEdit

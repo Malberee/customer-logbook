@@ -1,4 +1,5 @@
 import type { FC } from 'react'
+import { useTranslation } from 'react-i18next'
 
 import {
   AlertDialog,
@@ -27,6 +28,8 @@ export const DeleteAlert: FC<DeleteAlertProps> = ({
   onClose,
   onAction,
 }) => {
+  const { t } = useTranslation()
+
   return (
     <AlertDialog open={show}>
       <AlertDialogContent onEscapeKeyDown={onClose}>
@@ -35,11 +38,11 @@ export const DeleteAlert: FC<DeleteAlertProps> = ({
           <AlertDialogDescription>{description}</AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel onClick={onClose}>Cancel</AlertDialogCancel>
+          <AlertDialogCancel onClick={onClose}>{t('Cancel')}</AlertDialogCancel>
           <AlertDialogAction asChild>
             <>
               <Button onClick={onAction} variant="destructive">
-                Delete
+                {t('Delete')}
               </Button>
             </>
           </AlertDialogAction>

@@ -1,6 +1,8 @@
 import { format } from 'date-fns'
+import { enGB, uk } from 'date-fns/locale'
 import { CalendarIcon } from 'lucide-react'
 import { type FC } from 'react'
+import { useTranslation } from 'react-i18next'
 
 import { cn } from '@shared/lib'
 import {
@@ -22,6 +24,12 @@ export const DatePicker: FC<DatePickerProps> = ({
   onChange,
   onBlur,
 }) => {
+  const {
+    i18n: { language },
+  } = useTranslation()
+
+  const locale = language === 'uk' ? uk : enGB
+
   return (
     <Popover>
       <PopoverTrigger className="block" asChild>
@@ -34,7 +42,11 @@ export const DatePicker: FC<DatePickerProps> = ({
           type="button"
         >
           <CalendarIcon className="mr-2 h-4 w-4" />
-          {selected ? format(selected, 'PPP') : <span>Pick a date</span>}
+          {selected ? (
+            format(selected, 'PPP', { locale })
+          ) : (
+            <span>Pick a date</span>
+          )}
         </Button>
       </PopoverTrigger>
 
@@ -42,9 +54,9 @@ export const DatePicker: FC<DatePickerProps> = ({
         <Calendar
           mode="single"
           selected={selected}
+          locale={locale}
           onDayBlur={onBlur}
           onDayClick={onChange}
-          initialFocus
         />
       </PopoverContent>
     </Popover>

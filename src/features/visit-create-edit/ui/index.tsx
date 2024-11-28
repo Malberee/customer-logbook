@@ -1,4 +1,5 @@
 import { type FC } from 'react'
+import { useTranslation } from 'react-i18next'
 
 import {
   Dialog,
@@ -30,6 +31,8 @@ export const VisitCreateEdit: FC<VisitCreateEditProps> = ({
     visitForEdit,
   )
 
+  const { t } = useTranslation()
+
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent
@@ -37,8 +40,8 @@ export const VisitCreateEdit: FC<VisitCreateEditProps> = ({
         className="box-content max-h-screen max-w-[280px] overflow-auto"
       >
         <DialogHeader>
-          <DialogTitle>Visit</DialogTitle>
-          <DialogDescription className="hidden">Visit</DialogDescription>
+          <DialogTitle>{t('Visit')}</DialogTitle>
+          <DialogDescription className="hidden">{t('Visit')}</DialogDescription>
         </DialogHeader>
         <Form onSubmit={handleSubmit} defaultValues={defaultValues} />
       </DialogContent>

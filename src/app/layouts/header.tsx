@@ -3,6 +3,7 @@ import { ChevronLeft } from 'lucide-react'
 
 import { SearchBar } from '@features/search'
 import { ThemeToggle } from '@features/theme-toggle'
+import { LangToggle } from '@features/toggle-language'
 
 import { Button } from '@shared/ui'
 
@@ -17,7 +18,9 @@ export const Header = () => {
             <ChevronLeft />
           </Button>
         </Link>
-      ) : null}
+      ) : (
+        <LangToggle />
+      )}
 
       {pathname === '/' ? <SearchBar /> : null}
 

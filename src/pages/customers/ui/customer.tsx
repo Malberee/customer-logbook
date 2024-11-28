@@ -22,7 +22,7 @@ export const Customer: FC<CustomerType> = ({ name, tel, visits, id }) => {
           <p className="text-neutral-500">{tel}</p>
         </div>
         {lastVisitDate ? (
-          <p>Last visit: {format(lastVisitDate, 'dd.MM.yyyy')}</p>
+          <p>{format(lastVisitDate, 'dd.MM.yyyy')}</p>
         ) : null}
       </Link>
     </li>

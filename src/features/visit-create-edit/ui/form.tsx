@@ -1,6 +1,7 @@
 import { Label } from '@radix-ui/react-label'
 import { type FC } from 'react'
 import { Controller, useForm } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 
 import { Button, Input, Textarea } from '@shared/ui'
 
@@ -17,20 +18,22 @@ export const Form: FC<FormProps> = ({ onSubmit, defaultValues }) => {
     defaultValues: defaultValues || { date: new Date() },
   })
 
+  const { t } = useTranslation()
+
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
       <Label>
-        Procedure
+        {t('Procedure')}
         <Input {...register('procedure')} />
       </Label>
 
       <Label>
-        Price
+        {t('Price')}
         <Input type="number" step=".01" {...register('price')} />
       </Label>
 
       <Label className="inline">
-        Date
+        {t('Date')}
         <Controller
           control={control}
           name="date"
@@ -42,11 +45,11 @@ export const Form: FC<FormProps> = ({ onSubmit, defaultValues }) => {
       </Label>
 
       <Label>
-        Notes
+        {t('Notes')}
         <Textarea className="min-h-24" {...register('description')} />
       </Label>
 
-      <Button type="submit">Submit</Button>
+      <Button type="submit">{t('Submit')}</Button>
     </form>
   )
 }
