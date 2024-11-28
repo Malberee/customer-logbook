@@ -9,6 +9,7 @@ export default defineConfig({
     TanStackRouterVite({ routesDirectory: './src/app/routes' }),
     react(),
   ],
+  base: '/customer-logbook/',
   resolve: {
     alias: {
       '@app': path.resolve(__dirname, 'src/app'),

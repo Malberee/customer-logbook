@@ -1,5 +1,6 @@
 {
   "name": "customer-logbook",
+  "homepage": "https://malberee.github.io/customer-logbook",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -9,7 +10,9 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
-    "verify": "echo \u001b[34mTypecheck\u001b[0m && yarn typecheck && echo \u001b[35mLinting\u001b[0m && yarn lint"
+    "verify": "echo \u001b[34mTypecheck\u001b[0m && yarn typecheck && echo \u001b[35mLinting\u001b[0m && yarn lint",
+    "predeploy": "yarn run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.2.1",
@@ -57,6 +60,7 @@
     "eslint": "^9.13.0",
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-react-refresh": "^0.4.14",
+    "gh-pages": "^6.2.0",
     "globals": "^15.11.0",
     "lefthook": "^1.8.4",
     "postcss": "^8.4.49",
