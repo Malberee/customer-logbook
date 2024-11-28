@@ -9,11 +9,14 @@ export const Header = () => {
 
   return (
     <div className="mb-4 border-b border-accent pb-4">
-      <h1 className="mb-2 flex items-center gap-2 text-4xl">
-        <User size={24} />
-        {name}
-      </h1>
-      <div className="flex justify-between">
+      <div className="flex items-center justify-between">
+        <h1 className="mb-2 flex items-center gap-2 text-4xl">
+          <User size={24} />
+          {name}
+        </h1>
+        <Actions />
+      </div>
+      {tel ? (
         <a
           type="tel"
           href={`tel:${tel}`}
@@ -22,8 +25,7 @@ export const Header = () => {
           <Phone size={24} />
           {tel}
         </a>
-        <Actions />
-      </div>
+      ) : null}
     </div>
   )
 }

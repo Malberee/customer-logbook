@@ -48,7 +48,7 @@ export const Form: FC<FormProps> = ({ defaultValues, onSubmit }) => {
           id="tel"
           {...register('tel', {
             validate: (value) =>
-              !isNaN(Number(value)) || "It's not a phone number!",
+              !isNaN(Number(value)) || t("It's not a phone number!"),
           })}
         />
         {errors.tel && (

@@ -58,7 +58,7 @@ export const Actions = () => {
       </DropdownMenu>
 
       <DeleteAlert
-        title={t("Are you sure?")}
+        title={t('Are you sure?')}
         description={t('Delete customer alert')}
         show={showDialog}
         onClose={() => setShowDialog(false)}
