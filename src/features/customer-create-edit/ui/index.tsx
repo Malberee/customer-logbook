@@ -31,10 +31,13 @@ export const CustomerCreateEdit: FC<CustomerCreateEditProps> = ({
     (customerForEdit && customers.getCustomerById(customerForEdit)) || null
 
   const handleSubmit: SubmitHandler<CustomerForm> = (data) => {
+    const tel = data.tel.trim()
+    const name = data.name.trim()
+
     if (customer) {
-      customers.updateCustomer({ ...data, id: customer.id })
+      customers.updateCustomer({ name, tel, id: customer.id })
     } else {
-      customers.addCustomer(data)
+      customers.addCustomer({ name, tel })
     }
 
     onClose?.()
