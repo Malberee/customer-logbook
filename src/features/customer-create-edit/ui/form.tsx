@@ -15,7 +15,7 @@ interface FormProps {
   onSubmit: (data: CustomerForm) => void
 }
 
-const telRegex = /^\+?\d+(\s\d+)*/
+const telRegex = /^(\+?\d+(\s\d+)*|)$/
 
 export const Form: FC<FormProps> = ({ defaultValues, onSubmit }) => {
   const {
@@ -50,7 +50,7 @@ export const Form: FC<FormProps> = ({ defaultValues, onSubmit }) => {
           id="tel"
           {...register('tel', {
             validate: (value) =>
-              telRegex.test(value) || t("It's not a phone number!"),
+              telRegex.test(value.trim()) || t("It's not a phone number!"),
           })}
         />
         {errors.tel && (
