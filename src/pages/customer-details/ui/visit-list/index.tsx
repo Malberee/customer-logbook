@@ -22,7 +22,7 @@ export const VisitList = () => {
 
   const data = visits
     .toSorted((a, b) => {
-      return a.date.getTime() - b.date.getTime()
+      return new Date(a.date).getTime() - new Date(b.date).getTime()
     })
     .toReversed()
 

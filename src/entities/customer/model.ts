@@ -6,6 +6,7 @@ import { nanoid } from 'nanoid'
 export type Visit = {
   id: string
   date: Date
+  number: number
   procedure?: string
   description?: string
   price?: number
@@ -49,6 +50,14 @@ class Customers {
     return this.customers.filter((customer) =>
       customer.name.toLowerCase().startsWith(this.searchFilter.toLowerCase()),
     )
+  }
+
+  get lastVisitNumber() {
+    const lastVisit = this.customers
+      .flatMap((customer) => customer.visits.map((visit) => visit.number))
+      .filter(Boolean)
+
+    return lastVisit.length > 0 ? Math.max(...lastVisit) + 1 : 1
   }
 
   updateCustomer(customer: Partial<Customer>) {

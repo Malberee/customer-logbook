@@ -5,6 +5,7 @@ import { customers } from '@entities/customer'
 
 export type VisitForm = {
   date: Date
+  number: number
   procedure?: string
   price?: number
   description?: string
@@ -16,10 +17,19 @@ export const useForm = (
   visitId?: string,
 ) => {
   const handleSubmit: SubmitHandler<VisitForm> = (data) => {
+    const values = {
+      ...data,
+      price: data.price ? Number(data.price) : undefined,
+      number: Number(data.number),
+    }
+
     if (visitId) {
-      customers.updateVisit(customerId, { id: visitId, ...data })
+      customers.updateVisit(customerId, {
+        id: visitId,
+        ...values,
+      })
     } else {
-      customers.addVisit(customerId, data)
+      customers.addVisit(customerId, values)
     }
 
     onClose()

@@ -14,7 +14,7 @@ export interface VisitProps {
 }
 
 export const Visit: FC<VisitProps> = ({ visit, onEdit, onDelete }) => {
-  const { date, procedure, description, price, id } = visit
+  const { date, procedure, description, price, number, id } = visit
 
   const numberFormatter = Intl.NumberFormat('ua-UK', {
     style: 'currency',
@@ -37,7 +37,15 @@ export const Visit: FC<VisitProps> = ({ visit, onEdit, onDelete }) => {
         </AccordionTrigger>
 
         <AccordionContent className="px-4">
-          <h4 className="mb-2 text-xl">{procedure}</h4>
+          <div className="mb-2 flex items-center justify-between">
+            {procedure ? <h4 className="text-xl">{procedure}</h4> : null}
+
+            {number ? (
+              <p className="my-1 rounded-full bg-primary px-1 font-medium text-primary-foreground">
+                {number}
+              </p>
+            ) : null}
+          </div>
 
           {description ? <p className="mb-4">{description}</p> : null}
 

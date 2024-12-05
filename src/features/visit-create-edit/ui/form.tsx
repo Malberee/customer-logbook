@@ -3,6 +3,8 @@ import { type FC } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 
+import { customers } from '@entities/customer'
+
 import { Button, Input, Textarea } from '@shared/ui'
 
 import type { VisitForm } from '../model'
@@ -15,7 +17,10 @@ interface FormProps {
 
 export const Form: FC<FormProps> = ({ onSubmit, defaultValues }) => {
   const { register, handleSubmit, control } = useForm<VisitForm>({
-    defaultValues: defaultValues || { date: new Date() },
+    defaultValues: defaultValues || {
+      date: new Date(),
+      number: customers.lastVisitNumber,
+    },
   })
 
   const { t } = useTranslation()
@@ -42,6 +47,11 @@ export const Form: FC<FormProps> = ({ onSubmit, defaultValues }) => {
             <DatePicker onChange={onChange} onBlur={onBlur} selected={value} />
           )}
         />
+      </Label>
+
+      <Label>
+        {t('Visit number')}
+        <Input type="number" {...register('number')} />
       </Label>
 
       <Label>
