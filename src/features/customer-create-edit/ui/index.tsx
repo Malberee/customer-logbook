@@ -1,3 +1,5 @@
+import { useNavigate } from '@tanstack/react-router'
+import { nanoid } from 'nanoid'
 import type { FC } from 'react'
 import type { SubmitHandler } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
@@ -26,6 +28,7 @@ export const CustomerCreateEdit: FC<CustomerCreateEditProps> = ({
   onClose,
 }) => {
   const { t } = useTranslation()
+  const navigate = useNavigate()
 
   const customer =
     (customerForEdit && customers.getCustomerById(customerForEdit)) || null
@@ -37,7 +40,10 @@ export const CustomerCreateEdit: FC<CustomerCreateEditProps> = ({
     if (customer) {
       customers.updateCustomer({ name, tel, id: customer.id })
     } else {
-      customers.addCustomer({ name, tel })
+      const id = nanoid()
+
+      customers.addCustomer({ name, tel, id })
+      navigate({ to: `/${id}` })
     }
 
     onClose?.()

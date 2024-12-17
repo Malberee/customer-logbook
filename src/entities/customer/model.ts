@@ -38,8 +38,8 @@ class Customers {
     this.searchFilter = value
   }
 
-  addCustomer({ name, tel }: Pick<Customer, 'name' | 'tel'>) {
-    this.customers.push({ name, tel, id: nanoid(), visits: [] })
+  addCustomer({ name, tel, id }: Omit<Customer, 'visits'>) {
+    this.customers.push({ name, tel, id, visits: [] })
   }
 
   get filteredCustomers() {
