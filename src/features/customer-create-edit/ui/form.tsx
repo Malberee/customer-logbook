@@ -15,7 +15,7 @@ interface FormProps {
   onSubmit: (data: CustomerForm) => void
 }
 
-const telRegex = /^(\+?\d+(\s\d+)*|)$/
+const telRegex = /^(\+?\d+|\(\d+\))(\s*\d+|\s*\(\d+\))*$/
 
 export const Form: FC<FormProps> = ({ defaultValues, onSubmit }) => {
   const {
