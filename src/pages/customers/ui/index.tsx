@@ -14,14 +14,24 @@ export const Customers = observer(() => {
   const [modalIsOpen, setModalIsOpen] = useState(false)
   const { t } = useTranslation()
 
-  const data = customers.filteredCustomers.toSorted((a, b) =>
-    a.name.localeCompare(b.name),
-  )
+  const getData = () => {
+    if (customers.sortBy === 'name') {
+      return customers.filteredCustomers.toSorted((a, b) =>
+        a.name.localeCompare(b.name),
+      )
+    }
+
+    return customers.filteredCustomers.toSorted(
+      (a, b) =>
+        new Date(a.visits[0]?.date).getTime() -
+        new Date(b.visits[0]?.date).getTime(),
+    )
+  }
 
   return (
     <div className="flex h-full flex-col justify-between">
       <ul className="flex-1">
-        {data.map((customer) => (
+        {getData().map((customer) => (
           <Customer key={customer.id} {...customer} />
         ))}
       </ul>

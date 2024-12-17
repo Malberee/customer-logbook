@@ -4,6 +4,7 @@ import { ChevronLeft } from 'lucide-react'
 import { SearchBar } from '@features/search'
 import { ThemeToggle } from '@features/theme-toggle'
 import { LangToggle } from '@features/toggle-language'
+import { ToggleSortBy } from '@features/toggle-sort-by'
 
 import { basePath } from '@shared/config'
 import { Button } from '@shared/ui'
@@ -20,7 +21,10 @@ export const Header = () => {
           </Button>
         </Link>
       ) : (
-        <LangToggle />
+        <div className="flex gap-2">
+          <LangToggle />
+          <ToggleSortBy />
+        </div>
       )}
 
       {pathname === basePath ? <SearchBar /> : null}

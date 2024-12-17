@@ -23,6 +23,7 @@ export type Customer = {
 class Customers {
   customers: Customer[] = []
   searchFilter: string = ''
+  sortBy: 'name' | 'date' = 'name'
 
   constructor() {
     const indexedDBStore = new DBController('customer-logbook', 'customers', 1)
@@ -37,6 +38,10 @@ class Customers {
 
   setSearchFilter(value: string) {
     this.searchFilter = value
+  }
+
+  setSortBy(value: 'name' | 'date') {
+    this.sortBy = value
   }
 
   addCustomer({ name, tel, id }: Omit<Customer, 'visits'>) {
