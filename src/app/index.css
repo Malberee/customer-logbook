@@ -63,8 +63,12 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  main {
+    @apply flex flex-col;
+  }
 }
 
 .container {
-  @apply mx-auto w-[320px] px-4 md:w-[768px] md:px-8 xl:w-[1280px];
+  @apply mx-auto w-[320px] flex-1 px-4 md:w-[768px] md:px-8 xl:w-[1280px];
 }

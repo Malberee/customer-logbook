@@ -1,23 +1,14 @@
-import { observer } from 'mobx-react-lite';
-import { useState } from 'react';
+import { observer } from 'mobx-react-lite'
+import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
+import { CustomerCreateEdit } from '@features/customer-create-edit'
 
+import { customers } from '@entities/customer'
 
-import { CustomerCreateEdit } from '@features/customer-create-edit';
+import { DashedButton } from '@shared/ui'
 
-
-
-import { customers } from '@entities/customer';
-
-
-
-import { DashedButton } from '@shared/ui';
-
-
-
-import { Customer } from './customer';
-import { useTranslation } from 'react-i18next';
-
+import { Customer } from './customer'
 
 export const Customers = observer(() => {
   const [modalIsOpen, setModalIsOpen] = useState(false)
@@ -28,14 +19,14 @@ export const Customers = observer(() => {
   )
 
   return (
-    <>
+    <div className="flex h-full flex-col justify-between">
       <ul className="flex-1">
         {data.map((customer) => (
           <Customer key={customer.id} {...customer} />
         ))}
       </ul>
 
-      <div className="fixed bottom-0 left-0 w-full p-4">
+      <div className="sticky bottom-0 left-0 w-full p-4">
         <DashedButton onClick={() => setModalIsOpen(true)}>
           {t('Add customer')}
         </DashedButton>
@@ -45,6 +36,6 @@ export const Customers = observer(() => {
         onClose={() => setModalIsOpen(false)}
         isOpen={modalIsOpen}
       />
-    </>
+    </div>
   )
 })
