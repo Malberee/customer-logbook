@@ -10,6 +10,7 @@ export type Visit = {
   procedure?: string
   description?: string
   price?: number
+  payment: 'cash' | 'card'
 }
 
 export type Customer = {

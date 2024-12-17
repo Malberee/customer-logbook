@@ -1,11 +1,19 @@
 import { Label } from '@radix-ui/react-label'
+import { CreditCard, HandCoins } from 'lucide-react'
 import { type FC } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 
 import { customers } from '@entities/customer'
 
-import { Button, Input, Textarea } from '@shared/ui'
+import {
+  Button,
+  Input,
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  Textarea,
+} from '@shared/ui'
 
 import type { VisitForm } from '../model'
 import { DatePicker } from './date-picker'
@@ -20,6 +28,7 @@ export const Form: FC<FormProps> = ({ onSubmit, defaultValues }) => {
     defaultValues: defaultValues || {
       date: new Date(),
       number: customers.lastVisitNumber,
+      payment: 'cash',
     },
   })
 
@@ -35,6 +44,29 @@ export const Form: FC<FormProps> = ({ onSubmit, defaultValues }) => {
       <Label>
         {t('Price')}
         <Input type="number" step=".01" {...register('price')} />
+      </Label>
+
+      <Label>
+        {t('Payment')}
+        <Controller
+          control={control}
+          name="payment"
+          rules={{ required: true }}
+          render={({ field: { onChange, value } }) => (
+            <Tabs onValueChange={onChange} value={value}>
+              <TabsList className="w-full">
+                <TabsTrigger value="cash" className="flex-1">
+                  <HandCoins className="mr-1" />
+                  {t('Cash')}
+                </TabsTrigger>
+                <TabsTrigger value="card" className="flex-1">
+                  <CreditCard className="mr-1" />
+                  {t('Card')}
+                </TabsTrigger>
+              </TabsList>
+            </Tabs>
+          )}
+        />
       </Label>
 
       <Label className="inline">

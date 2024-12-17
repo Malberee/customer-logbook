@@ -19,5 +19,8 @@
   "Price": "Price",
   "Date": "Date",
   "Notes": "Notes",
-  "Visit number": "Visit number"
+  "Visit number": "Visit number",
+  "Payment": "Payment",
+  "Card": "Card",
+  "Cash": "Cash"
 }

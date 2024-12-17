@@ -9,6 +9,7 @@ export type VisitForm = {
   procedure?: string
   price?: number
   description?: string
+  payment: 'cash' | 'card'
 }
 
 export const useForm = (
