@@ -1,4 +1,8 @@
-import { Outlet, createRootRoute } from '@tanstack/react-router'
+import {
+  Outlet,
+  ScrollRestoration,
+  createRootRoute,
+} from '@tanstack/react-router'
 import React, { Suspense } from 'react'
 
 import { Header } from '@app/layouts'
@@ -21,9 +25,11 @@ export const Route = createRootRoute({
       <div className="container">
         <Outlet />
       </div>
+      
       <Suspense>
         <TanStackRouterDevtools />
       </Suspense>
+      <ScrollRestoration />
     </LanguageProvider>
   ),
 })
