@@ -23,8 +23,8 @@ export const Customers = observer(() => {
 
     return customers.filteredCustomers.toSorted(
       (a, b) =>
-        new Date(a.visits[0]?.date).getTime() -
-        new Date(b.visits[0]?.date).getTime(),
+        Math.max(...a.visits.map((visit) => new Date(visit.date).getTime())) -
+        Math.max(...b.visits.map((visit) => new Date(visit.date).getTime())),
     )
   }
 
