@@ -3,6 +3,8 @@ import React, { Suspense } from 'react'
 
 import { Header } from '@app/layouts'
 
+import { LanguageProvider } from '@features/toggle-language'
+
 const TanStackRouterDevtools =
   process.env.NODE_ENV === 'production'
     ? () => null
@@ -14,7 +16,7 @@ const TanStackRouterDevtools =
 
 export const Route = createRootRoute({
   component: () => (
-    <>
+    <LanguageProvider>
       <Header />
       <div className="container">
         <Outlet />
@@ -22,6 +24,6 @@ export const Route = createRootRoute({
       <Suspense>
         <TanStackRouterDevtools />
       </Suspense>
-    </>
+    </LanguageProvider>
   ),
 })

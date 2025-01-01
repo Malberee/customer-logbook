@@ -18,7 +18,7 @@ export const SearchBar = () => {
   }, [debouncedValue])
 
   return (
-    <div className="relative ml-auto max-w-[300px] flex-1">
+    <div className="relative max-w-[300px] flex-1">
       <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
       <Input
         onChange={(e) => setValue(e.target.value)}

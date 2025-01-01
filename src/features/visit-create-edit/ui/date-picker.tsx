@@ -50,7 +50,7 @@ export const DatePicker: FC<DatePickerProps> = ({
         </Button>
       </PopoverTrigger>
 
-      <PopoverContent side="top">
+      <PopoverContent side="top" className='pointer-events-auto'>
         <Calendar
           mode="single"
           selected={selected}

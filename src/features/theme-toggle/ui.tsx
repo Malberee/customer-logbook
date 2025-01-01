@@ -9,12 +9,13 @@ export const ThemeToggle = () => {
 
   return (
     <Button
-      className="ml-auto"
+      size="lg"
+      className="justify-start capitalize"
       variant="ghost"
-      size="icon"
       onClick={toggleTheme}
     >
       {theme === 'dark' ? <Sun /> : <Moon />}
+      {theme}
     </Button>
   )
 }

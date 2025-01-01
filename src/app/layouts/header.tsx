@@ -1,35 +1,37 @@
-import { Link, useRouterState } from '@tanstack/react-router'
+import { Link, useLocation } from '@tanstack/react-router'
 import { ChevronLeft } from 'lucide-react'
 
+import { Sidebar } from '@widgets/sidebar'
+
 import { SearchBar } from '@features/search'
-import { ThemeToggle } from '@features/theme-toggle'
-import { LangToggle } from '@features/toggle-language'
+import { useTheme } from '@features/theme-toggle'
 import { ToggleSortBy } from '@features/toggle-sort-by'
 
 import { basePath } from '@shared/config'
 import { Button } from '@shared/ui'
 
 export const Header = () => {
-  const pathname = useRouterState().location.pathname
+  const pathname = useLocation().pathname
+  useTheme()
 
   return (
-    <header className="flex gap-4 p-4">
-      {pathname !== basePath ? (
+    <header className="flex justify-between gap-4 p-4">
+      {pathname === basePath || pathname === `${basePath}stats` ? (
+        <Sidebar />
+      ) : (
         <Link to="/">
           <Button variant="ghost" size="icon">
             <ChevronLeft />
           </Button>
         </Link>
-      ) : (
-        <div className="flex gap-2">
-          <LangToggle />
-          <ToggleSortBy />
-        </div>
       )}
 
-      {pathname === basePath ? <SearchBar /> : null}
-
-      <ThemeToggle />
+      {pathname === basePath ? (
+        <>
+          <SearchBar />
+          <ToggleSortBy />
+        </>
+      ) : null}
     </header>
   )
 }

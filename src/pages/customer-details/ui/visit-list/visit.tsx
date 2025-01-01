@@ -4,6 +4,7 @@ import { type FC } from 'react'
 
 import type { Visit as VisitType } from '@entities/customer'
 
+import { formatCurrency } from '@shared/lib'
 import { AccordionContent, AccordionItem, AccordionTrigger } from '@shared/ui'
 
 import { Actions } from './actions'
@@ -16,11 +17,6 @@ export interface VisitProps {
 
 export const Visit: FC<VisitProps> = ({ visit, onEdit, onDelete }) => {
   const { date, procedure, description, price, number, payment, id } = visit
-
-  const numberFormatter = Intl.NumberFormat('ua-UK', {
-    style: 'currency',
-    currency: 'UAH',
-  })
 
   const paymentIcons = {
     cash: <HandCoins size={18} />,
@@ -38,7 +34,7 @@ export const Visit: FC<VisitProps> = ({ visit, onEdit, onDelete }) => {
           {price ? (
             <p className="ml-auto mr-2 flex flex-row items-center gap-1">
               {payment ? paymentIcons[payment] : null}
-              {numberFormatter.format(price)}
+              {formatCurrency(price)}
             </p>
           ) : null}
         </AccordionTrigger>

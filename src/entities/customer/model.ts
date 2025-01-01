@@ -66,6 +66,10 @@ class Customers {
     return lastVisit.length > 0 ? Math.max(...lastVisit) + 1 : 1
   }
 
+  get allVisits() {
+    return this.customers.map((customer) => customer.visits).flat()
+  }
+
   updateCustomer(customer: Partial<Customer>) {
     this.customers = this.customers.map((c) =>
       c.id === customer.id ? { ...c, ...customer } : c,

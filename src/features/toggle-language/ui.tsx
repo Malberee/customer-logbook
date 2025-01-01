@@ -9,15 +9,21 @@ export const LangToggle = () => {
 
   return (
     <Button
-      size="icon"
-      className="aspect-square"
+      className="justify-start"
+      size="lg"
       variant="ghost"
       onClick={toggleLanguage}
     >
       {currentLang === 'uk' ? (
-        <UA className="!w-6 rounded-sm" />
+        <>
+          <UA className="!w-6 rounded-sm" />
+          Українська
+        </>
       ) : (
-        <GB className="!w-6 rounded-sm" />
+        <>
+          <GB className="!w-6 rounded-sm" />
+          English
+        </>
       )}
     </Button>
   )
