@@ -31,7 +31,7 @@ export const DatePicker: FC<DatePickerProps> = ({
   const locale = language === 'uk' ? uk : enGB
 
   return (
-    <Popover>
+    <Popover modal>
       <PopoverTrigger className="block" asChild>
         <Button
           variant="outline"
@@ -50,7 +50,7 @@ export const DatePicker: FC<DatePickerProps> = ({
         </Button>
       </PopoverTrigger>
 
-      <PopoverContent side="top" className='pointer-events-auto'>
+      <PopoverContent side="top">
         <Calendar
           mode="single"
           selected={selected}
