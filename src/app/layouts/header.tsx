@@ -1,4 +1,4 @@
-import { Link, useLocation } from '@tanstack/react-router'
+import { useLocation, useRouter } from '@tanstack/react-router'
 import { ChevronLeft } from 'lucide-react'
 
 import { Sidebar } from '@widgets/sidebar'
@@ -12,6 +12,7 @@ import { Button } from '@shared/ui'
 
 export const Header = () => {
   const pathname = useLocation().pathname
+  const { history } = useRouter()
   useTheme()
 
   return (
@@ -19,11 +20,9 @@ export const Header = () => {
       {pathname === basePath || pathname === `${basePath}stats` ? (
         <Sidebar />
       ) : (
-        <Link to="/">
-          <Button variant="ghost" size="icon">
-            <ChevronLeft />
-          </Button>
-        </Link>
+        <Button onClick={() => history.back()} variant="ghost" size="icon">
+          <ChevronLeft />
+        </Button>
       )}
 
       {pathname === basePath ? (
