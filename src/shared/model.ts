@@ -1,9 +1,14 @@
-import { eachMonthOfInterval, format, isSameMonth, subMonths } from 'date-fns'
-import { enGB, uk } from 'date-fns/locale'
+import { eachMonthOfInterval, format, isSameMonth, subMonths } from 'date-fns';
+import { enGB, uk } from 'date-fns/locale';
 
-import { useLanguage } from '@features/toggle-language'
 
-import { customers } from '@entities/customer'
+
+import { useLanguage } from '@features/toggle-language';
+
+
+
+import { customers } from '@entities/customer';
+
 
 export const useStats = () => {
   const visits = customers.allVisits

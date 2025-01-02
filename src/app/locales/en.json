@@ -24,5 +24,7 @@
   "Card": "Card",
   "Cash": "Cash",
   "Customers": "Customers",
-  "Statistics": "Statistics"
+  "Statistics": "Statistics",
+  "Visits": "Visits",
+  "Earnings": "Earnings"
 }
