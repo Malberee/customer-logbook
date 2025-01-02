@@ -1,5 +1,7 @@
 import { RouterProvider, createRouter } from '@tanstack/react-router'
 
+import { NotFound } from '@pages/not-found'
+
 import { routeTree } from '../routeTree.gen'
 import './i18n'
 import './index.css'
@@ -7,6 +9,7 @@ import './index.css'
 const router = createRouter({
   routeTree,
   basepath: '/customer-logbook/',
+  defaultNotFoundComponent: NotFound,
 })
 
 declare module '@tanstack/react-router' {

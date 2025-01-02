@@ -25,7 +25,7 @@ export const Route = createRootRoute({
       <div className="container">
         <Outlet />
       </div>
-      
+
       <Suspense>
         <TanStackRouterDevtools />
       </Suspense>
