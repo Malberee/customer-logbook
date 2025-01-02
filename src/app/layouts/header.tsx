@@ -15,7 +15,7 @@ export const Header = () => {
   useTheme()
 
   return (
-    <header className="flex justify-between gap-4 p-4">
+    <header className="sticky top-0 z-10 flex justify-between gap-4 bg-background p-4">
       {pathname === basePath || pathname === `${basePath}stats` ? (
         <Sidebar />
       ) : (
