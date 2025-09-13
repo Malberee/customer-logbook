@@ -54,7 +54,7 @@ class Customers {
     }
 
     return this.customers.filter((customer) =>
-      customer.name.toLowerCase().startsWith(this.searchFilter.toLowerCase()),
+      customer.name.toLowerCase().includes(this.searchFilter.toLowerCase()),
     )
   }
 
